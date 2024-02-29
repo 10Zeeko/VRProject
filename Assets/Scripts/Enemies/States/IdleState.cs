@@ -6,9 +6,9 @@ namespace VRProject.Enemy
     {
         public IdleState(bool needsExitTime, SneakEnemy sneakEnemy) : base(needsExitTime, sneakEnemy)
         {
-            base.onEnter();
+            base.OnEnter();
             _agent.isStopped = true;
-            Animator.Play("Idle");
+            _animator.Play("Crouching Idle");
         }
     }
 }
