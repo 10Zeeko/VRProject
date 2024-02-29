@@ -6,16 +6,16 @@ using Random = UnityEngine.Random;
 public class FlashLight : MonoBehaviour
 {
     public XRNode handNode;
-    private Vector3 lastHandPosition;
+    private Vector3 _lastHandPosition;
     [SerializeField]
     private float shakeThreshold = 0.04f;
     [SerializeField]
     private int battery = 100;
-    private int maxBattery = 100;
-    private bool isOn = false;
+    private int _maxBattery = 100;
+    private bool _isOn = false;
     [SerializeField]
     private Light light;
-    private float batteryDrainTimer = 0f; // Add a timer for battery drain
+    private float _batteryDrainTimer = 0f; // Add a timer for battery drain
 
     private void Start()
     {
@@ -24,18 +24,18 @@ public class FlashLight : MonoBehaviour
 
     public void TurnOff()
     {
-        if(isOn)
+        if(_isOn)
         {
-            isOn = false;
+            _isOn = false;
             light.enabled = false;
         }
     }
 
     public void TurnOn()
     {
-        if(!isOn)
+        if(!_isOn)
         {
-            isOn = true;
+            _isOn = true;
             light.enabled = true;
         }
     }
@@ -50,22 +50,22 @@ public class FlashLight : MonoBehaviour
         Vector3 currentHandPosition;
         if (TryGetHandPosition(handNode, out currentHandPosition))
         {
-            if (Vector3.Distance(lastHandPosition, currentHandPosition) > shakeThreshold)
+            if (Vector3.Distance(_lastHandPosition, currentHandPosition) > shakeThreshold)
             {
-                battery = Mathf.Min(maxBattery, battery + 1);
+                battery = Mathf.Min(_maxBattery, battery + 1);
             }
-            lastHandPosition = currentHandPosition;
+            _lastHandPosition = currentHandPosition;
         }
 
-        if(isOn)
+        if(_isOn)
         {
-            batteryDrainTimer += Time.deltaTime;
-            if (batteryDrainTimer >= 1f)
+            _batteryDrainTimer += Time.deltaTime;
+            if (_batteryDrainTimer >= 1f)
             {
                 battery--;
-                batteryDrainTimer = 0f;
+                _batteryDrainTimer = 0f;
             }
-            light.intensity = (float)battery / maxBattery;
+            light.intensity = (float)battery / _maxBattery;
 
             if(battery <= 0 || (battery < 20 && Random.value < 0.01f))
             {
