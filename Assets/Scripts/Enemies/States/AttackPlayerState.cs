@@ -21,5 +21,17 @@ namespace VRProject.Enemy
             base.OnEnter();
             _animator.Play("AttackPlayer");
         }
+        public override void OnLogic()
+        {
+            base.OnLogic();
+            if (!_requestedExit)
+            {
+                _agent.SetDestination(new Vector3(10, 0, 10));
+            }
+            else if (_agent.remainingDistance <= _agent.stoppingDistance)
+            {
+                fsm.StateCanExit();
+            }
+        }
     }
 }

@@ -95,6 +95,7 @@ namespace VRProject.Enemy
         private void Update()
         {
             _enemyFsm.OnLogic();
+            Debug.Log(_enemyFsm.ActiveStateName);
         }
     }
 }

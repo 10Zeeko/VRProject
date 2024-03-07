@@ -8,9 +8,13 @@ namespace VRProject.Sensors
     [RequireComponent(typeof(SphereCollider))]
     public class PlayerSensor : MonoBehaviour
     {
-        public event Action<Transform> OnPlayerEnter;
+        public delegate void PlayerEnterEvent(Transform player);
         
-        public event Action<Vector3> OnPlayerExit;
+        public delegate void PlayerExitEvent(Vector3 lastKnownPosition);
+        
+        public event PlayerEnterEvent OnPlayerEnter;
+        
+        public event PlayerExitEvent OnPlayerExit;
 
         private void OnTriggerEnter(Collider other)
         {
