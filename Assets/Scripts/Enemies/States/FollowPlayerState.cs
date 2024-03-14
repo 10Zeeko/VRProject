@@ -6,7 +6,7 @@ namespace VRProject.Enemy
     {
         private Transform Target;
 
-        public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy) : base(needsExitTime, sneakEnemy)
+        public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
         {
             this.Target = Target;
         }
@@ -23,10 +23,13 @@ namespace VRProject.Enemy
             base.OnLogic();
             if (!_requestedExit)
             {
+                // you can add a more complex movement prediction algorithm like what 
+                // we did in AI Series 44: https://youtu.be/1Jkg8cKLsC0
                 _agent.SetDestination(Target.position);
             }
             else if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
+                // In case that we were requested to exit, we will continue moving to the last known position prior to transitioning out to idle.
                 fsm.StateCanExit();
             }
         }

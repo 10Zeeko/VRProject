@@ -1,8 +1,6 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 using UnityHFSM;
 using VRProject.Sensors;
 
@@ -14,6 +12,12 @@ namespace VRProject.Enemy
         [Header("References")] [SerializeField]
         private GameObject player;
         
+        [FormerlySerializedAs("AttackCooldown")]
+        [Header("Attack Config")]
+        [SerializeField]
+        [Range(0.1f, 5f)]
+        private float attackCooldown = 2;
+        
         [Header("Sensors")]
         [SerializeField] private PlayerSensor followPlayerSensor;
         [SerializeField] private PlayerSensor rangeAttackPlayerSensor;
@@ -23,12 +27,14 @@ namespace VRProject.Enemy
         [SerializeField] private bool isPlayerInFollowRange;
         [SerializeField] private bool isPlayerInAttackRange;
         [SerializeField] private bool isPlayerInRunAwayRange;
+        [SerializeField]
+        private float LastAttackTime;
         
         private StateMachine<SneakEnemyState, StateEvent> _enemyFsm;
         [SerializeField]
-        private Animator _animator;
+        public Animator _animator;
         [SerializeField]
-        private NavMeshAgent _agent;
+        public NavMeshAgent _agent;
 
         private void Awake()
         {
@@ -38,21 +44,21 @@ namespace VRProject.Enemy
             
             // Add states
             _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(true, this));
-            _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this));
+            _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform));
             _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack));
             _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this));
-            _enemyFsm.SetStartState(SneakEnemyState.Idle);
+            //_enemyFsm.SetStartState(SneakEnemyState.Idle);
             
             // Add transitions
             _enemyFsm.AddTriggerTransition(StateEvent.DetectPlayer, new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.FollowPlayer));
             _enemyFsm.AddTriggerTransition(StateEvent.LostPlayer, new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.Idle));
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.FollowPlayer, 
                 (transition) => isPlayerInFollowRange 
-                                && Vector3.Distance(player.transform.position, transform.position) <= _agent.stoppingDistance));
+                                && Vector3.Distance(player.transform.position, transform.position) > _agent.stoppingDistance));
             
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.Idle, 
                 (transition) => !isPlayerInFollowRange
-                                || Vector3.Distance(player.transform.position, transform.position) > _agent.stoppingDistance)
+                                || Vector3.Distance(player.transform.position, transform.position) <= _agent.stoppingDistance)
             );
             
             // Attack transitions
@@ -79,9 +85,17 @@ namespace VRProject.Enemy
             runAwayPlayerSensor.OnPlayerExit += RunAwayPlayerSensor_OnPlayerExit;
         }
 
-        private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition) => isPlayerInFollowRange = false;
+        private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)
+        {
+            _enemyFsm.Trigger(StateEvent.LostPlayer);
+            isPlayerInFollowRange = false;
+        }
 
-        private void FollowPlayerSensor_OnPlayerEnter(Transform obj) => isPlayerInFollowRange = true;
+        private void FollowPlayerSensor_OnPlayerEnter(Transform obj)
+        {
+            _enemyFsm.Trigger(StateEvent.DetectPlayer);
+            isPlayerInFollowRange = true;
+        }
         private void RangeAttackPlayerSensor_OnPlayerExit(Vector3 obj) => isPlayerInAttackRange = false;
 
         private void RangeAttackPlayerSensor_OnPlayerEnter(Transform obj) => isPlayerInAttackRange = true;
@@ -90,6 +104,8 @@ namespace VRProject.Enemy
 
         private void OnAttack(State<SneakEnemyState, StateEvent> state)
         {
+            transform.LookAt(player.transform.position);
+            LastAttackTime = Time.time;
         }
 
         private void Update()

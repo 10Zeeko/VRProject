@@ -8,8 +8,8 @@ namespace VRProject.Enemy
     public class SneakEnemyStateBase : State<SneakEnemyState, StateEvent>
     {
         protected readonly SneakEnemy _sneakEnemy;
-        protected readonly NavMeshAgent _agent;
-        protected readonly Animator _animator;
+        protected NavMeshAgent _agent;
+        protected Animator _animator;
         protected bool _requestedExit;
         protected float _exitTime;
 
@@ -34,8 +34,8 @@ namespace VRProject.Enemy
             this._exitTime = exitTime;
             this.needsExitTime = needsExitTime;
             
-            _agent = sneakEnemy.GetComponent<NavMeshAgent>();
-            _animator = sneakEnemy.GetComponent<Animator>();
+            _agent = sneakEnemy._agent;
+            _animator = sneakEnemy._animator;
         }
 
         public override void OnEnter()

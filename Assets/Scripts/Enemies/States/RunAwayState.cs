@@ -15,7 +15,7 @@ namespace VRProject.Enemy
             base.OnEnter();
             _agent.enabled = true;
             _agent.isStopped = false;
-            _animator.Play("Run");
+            _animator.Play("Stand Up");
         }
 
         public override void OnLogic()

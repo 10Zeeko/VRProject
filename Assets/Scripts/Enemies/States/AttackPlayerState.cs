@@ -8,30 +8,15 @@ namespace VRProject.Enemy
     {
         public AttackPlayerState(
             bool needsExitTime,
-            SneakEnemy sneakEnemy,
+            SneakEnemy Enemy,
             Action<State<SneakEnemyState, StateEvent>> onEnter,
-            float exitTime = 0.1f) : base(needsExitTime, sneakEnemy, exitTime, onEnter)
-        {
-            
-        }
+            float ExitTime = 0.33f) : base(needsExitTime, Enemy, ExitTime, onEnter) {}
 
         public override void OnEnter()
         {
             _agent.isStopped = true;
             base.OnEnter();
             _animator.Play("AttackPlayer");
-        }
-        public override void OnLogic()
-        {
-            base.OnLogic();
-            if (!_requestedExit)
-            {
-                _agent.SetDestination(new Vector3(10, 0, 10));
-            }
-            else if (_agent.remainingDistance <= _agent.stoppingDistance)
-            {
-                fsm.StateCanExit();
-            }
         }
     }
 }
