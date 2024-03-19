@@ -29,7 +29,6 @@ namespace VRProject.Enemy
             }
             else if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
-                // In case that we were requested to exit, we will continue moving to the last known position prior to transitioning out to idle.
                 fsm.StateCanExit();
             }
         }

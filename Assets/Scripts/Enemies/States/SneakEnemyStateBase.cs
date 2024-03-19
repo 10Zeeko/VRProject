@@ -8,8 +8,8 @@ namespace VRProject.Enemy
     public class SneakEnemyStateBase : State<SneakEnemyState, StateEvent>
     {
         protected readonly SneakEnemy _sneakEnemy;
-        protected NavMeshAgent _agent;
-        protected Animator _animator;
+        protected readonly NavMeshAgent _agent;
+        protected readonly Animator _animator;
         protected bool _requestedExit;
         protected float _exitTime;
 

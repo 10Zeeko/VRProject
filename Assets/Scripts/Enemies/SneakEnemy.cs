@@ -43,7 +43,7 @@ namespace VRProject.Enemy
             _enemyFsm = new ();
             
             // Add states
-            _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(true, this));
+            _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(false, this));
             _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform));
             _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack));
             _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this));
