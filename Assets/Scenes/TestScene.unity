@@ -1104,7 +1104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149450922809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.018, z: 0.158}
+  m_LocalPosition: {x: 0, y: 1.018, z: 0.09}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1309,6 +1309,8 @@ MonoBehaviour:
   isPlayerInFollowRange: 0
   isPlayerInAttackRange: 0
   isPlayerInRunAwayRange: 0
+  shouldAttack: 0
+  shouldRunAway: 0
   LastAttackTime: 0
   _animator: {fileID: 7312207169899309304}
   _agent: {fileID: 919132149450922810}
@@ -2083,6 +2085,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3719494068218809334}
   - component: {fileID: 3719494068218809335}
+  - component: {fileID: 3719494068218809336}
   m_Layer: 0
   m_Name: Flashlight
   m_TagString: Untagged
@@ -2204,6 +2207,24 @@ MonoBehaviour:
   shakeThreshold: 0.04
   battery: 100
   light: {fileID: 1511516232}
+  lightDetection: {fileID: 3719494068218809336}
+  sneakEnemy: {fileID: 919132149450922814}
+--- !u!114 &3719494068218809336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3420131705928094460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18daa6fd6e139cc4b9e76cbd0c2d3737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashlight: {fileID: 1511516232}
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!4 &3742394135185481315
 Transform:
   m_ObjectHideFlags: 0

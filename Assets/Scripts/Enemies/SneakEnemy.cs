@@ -27,6 +27,10 @@ namespace VRProject.Enemy
         [SerializeField] private bool isPlayerInFollowRange;
         [SerializeField] private bool isPlayerInAttackRange;
         [SerializeField] private bool isPlayerInRunAwayRange;
+        
+        [SerializeField] private bool shouldAttack = false;
+        [SerializeField] private bool shouldRunAway = false;
+        
         [SerializeField]
         private float LastAttackTime;
         
@@ -62,15 +66,25 @@ namespace VRProject.Enemy
             );
             
             // Attack transitions
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.AttackPlayer));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.Idle));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.RunAway));
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.AttackPlayer, 
+                (transition) => shouldAttack)
+            );
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer, 
+                (transition) => shouldAttack)
+            );
+            //_enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer));
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.Idle, 
+                (transition) => Time.time - LastAttackTime >= attackCooldown)
+            );
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.RunAway, 
+                (transition) => shouldRunAway)
+            );
             
             // Run away transitions
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.RunAway));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.RunAway, SneakEnemyState.Idle));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.RunAway, SneakEnemyState.FollowPlayer));
+            //_enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.RunAway));
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.RunAway, SneakEnemyState.Idle, 
+                (transition) => !isPlayerInRunAwayRange)
+            );
             
             _enemyFsm.Init();
         }
@@ -88,14 +102,15 @@ namespace VRProject.Enemy
         private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)
         {
             _enemyFsm.Trigger(StateEvent.LostPlayer);
-            isPlayerInFollowRange = false;
+            isPlayerInFollowRange = true;
         }
 
         private void FollowPlayerSensor_OnPlayerEnter(Transform obj)
         {
-            _enemyFsm.Trigger(StateEvent.DetectPlayer);
-            isPlayerInFollowRange = true;
+            _enemyFsm.Trigger(StateEvent.LostPlayer);
+            isPlayerInFollowRange = false;
         }
+
         private void RangeAttackPlayerSensor_OnPlayerExit(Vector3 obj) => isPlayerInAttackRange = false;
 
         private void RangeAttackPlayerSensor_OnPlayerEnter(Transform obj) => isPlayerInAttackRange = true;
@@ -104,8 +119,11 @@ namespace VRProject.Enemy
 
         private void OnAttack(State<SneakEnemyState, StateEvent> state)
         {
-            transform.LookAt(player.transform.position);
-            LastAttackTime = Time.time;
+            if (Time.time - LastAttackTime >= attackCooldown)
+            {
+                transform.LookAt(player.transform.position);
+                LastAttackTime = Time.time;
+            }
         }
 
         private void Update()

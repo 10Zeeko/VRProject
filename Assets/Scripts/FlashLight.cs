@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR;
+using VRProject.Enemy;
 using Random = UnityEngine.Random;
 
 public class FlashLight : MonoBehaviour
@@ -16,6 +18,11 @@ public class FlashLight : MonoBehaviour
     [SerializeField]
     private Light light;
     private float _batteryDrainTimer = 0f; // Add a timer for battery drain
+    
+    [SerializeField]
+    private LightDetection lightDetection; 
+    [SerializeField]
+    private SneakEnemy sneakEnemy;
 
     private void Start()
     {
@@ -70,6 +77,11 @@ public class FlashLight : MonoBehaviour
             if(battery <= 0 || (battery < 20 && Random.value < 0.01f))
             {
                 TurnOff();
+            }
+
+            if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
+            {
+                Debug.Log("Light detected!");
             }
         }
     }

@@ -5,6 +5,7 @@ namespace VRProject.Enemy
     public class FollowPlayerState : SneakEnemyStateBase
     {
         private Transform Target;
+        private static readonly int PlayerOutOfRange = Animator.StringToHash("playerOutOfRange");
 
         public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
         {
@@ -16,7 +17,7 @@ namespace VRProject.Enemy
             base.OnEnter();
             _agent.enabled = true;
             _agent.isStopped = false;
-            _animator.Play("FollowPlayer");
+            _animator.SetBool("playerOutOfRange", true);
         }
         public override void OnLogic()
         {
