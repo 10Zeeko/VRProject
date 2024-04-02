@@ -23,6 +23,9 @@ public class FlashLight : MonoBehaviour
     private LightDetection lightDetection; 
     [SerializeField]
     private SneakEnemy sneakEnemy;
+    
+    public delegate void FlashLightEvent(bool isOn);
+    public event FlashLightEvent OnFlashLightEvent;
 
     private void Start()
     {
@@ -34,6 +37,7 @@ public class FlashLight : MonoBehaviour
         if(_isOn)
         {
             _isOn = false;
+            OnFlashLightEvent?.Invoke(_isOn);
             light.enabled = false;
         }
     }
@@ -43,6 +47,7 @@ public class FlashLight : MonoBehaviour
         if(!_isOn)
         {
             _isOn = true;
+            OnFlashLightEvent?.Invoke(_isOn);
             light.enabled = true;
         }
     }
@@ -82,6 +87,17 @@ public class FlashLight : MonoBehaviour
             if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
             {
                 Debug.Log("Light detected!");
+            }
+        }
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (_isOn)
+            {
+                TurnOff();
+            }
+            else
+            {
+                TurnOn();
             }
         }
     }

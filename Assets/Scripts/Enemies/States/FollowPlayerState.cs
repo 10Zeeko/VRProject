@@ -5,11 +5,13 @@ namespace VRProject.Enemy
     public class FollowPlayerState : SneakEnemyStateBase
     {
         private Transform Target;
+        [SerializeField] private float _speed = 1.0f;
         private static readonly int PlayerOutOfRange = Animator.StringToHash("playerOutOfRange");
 
         public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
         {
             this.Target = Target;
+            _agent.speed = _speed;
         }
 
         public override void OnEnter()

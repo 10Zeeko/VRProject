@@ -22,6 +22,7 @@ namespace VRProject.Enemy
         [SerializeField] private PlayerSensor followPlayerSensor;
         [SerializeField] private PlayerSensor rangeAttackPlayerSensor;
         [SerializeField] private PlayerSensor runAwayPlayerSensor;
+        [SerializeField] private FlashLight flashlightPlayerSensor;
         
         [Header("Debug info")]
         [SerializeField] private bool isPlayerInFollowRange;
@@ -97,6 +98,12 @@ namespace VRProject.Enemy
             rangeAttackPlayerSensor.OnPlayerExit += RangeAttackPlayerSensor_OnPlayerExit;
             runAwayPlayerSensor.OnPlayerEnter += RunAwayPlayerSensor_OnPlayerEnter;
             runAwayPlayerSensor.OnPlayerExit += RunAwayPlayerSensor_OnPlayerExit;
+            flashlightPlayerSensor.OnFlashLightEvent += FlashlightPlayerSensor_FlashLightEvent;
+        }
+
+        private void FlashlightPlayerSensor_FlashLightEvent(bool ison)
+        {
+            throw new System.NotImplementedException();
         }
 
         private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)

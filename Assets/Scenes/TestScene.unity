@@ -914,7 +914,7 @@ PrefabInstance:
     - target: {fileID: 731877747954684981, guid: a3cba006d60dc344fb2ebd6b2f5a05da,
         type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 731877747954684981, guid: a3cba006d60dc344fb2ebd6b2f5a05da,
         type: 3}
@@ -976,12 +976,6 @@ PrefabInstance:
 --- !u!4 &2014433725 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1933558969787425784, guid: a3cba006d60dc344fb2ebd6b2f5a05da,
-    type: 3}
-  m_PrefabInstance: {fileID: 2014433724}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2014433726 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 731877747954684981, guid: a3cba006d60dc344fb2ebd6b2f5a05da,
     type: 3}
   m_PrefabInstance: {fileID: 2014433724}
   m_PrefabAsset: {fileID: 0}
@@ -1301,7 +1295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 510b227e21b8afe409ddca2a45902266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2014433726}
+  player: {fileID: 1653268529}
   attackCooldown: 2
   followPlayerSensor: {fileID: 1057498726}
   rangeAttackPlayerSensor: {fileID: 1397031969}
