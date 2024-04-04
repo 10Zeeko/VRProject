@@ -327,7 +327,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 5.25
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &907250834
 Transform:
@@ -1098,7 +1098,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132149450922809}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.018, z: 0.09}
+  m_LocalPosition: {x: 0, y: 1.018, z: 5.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1300,6 +1300,7 @@ MonoBehaviour:
   followPlayerSensor: {fileID: 1057498726}
   rangeAttackPlayerSensor: {fileID: 1397031969}
   runAwayPlayerSensor: {fileID: 907250835}
+  flashlightPlayerSensor: {fileID: 3719494068218809335}
   isPlayerInFollowRange: 0
   isPlayerInAttackRange: 0
   isPlayerInRunAwayRange: 0
@@ -2199,7 +2200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handNode: 4
   shakeThreshold: 0.04
-  battery: 100
+  battery: 40
   light: {fileID: 1511516232}
   lightDetection: {fileID: 3719494068218809336}
   sneakEnemy: {fileID: 919132149450922814}

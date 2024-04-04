@@ -6,7 +6,6 @@ namespace VRProject.Enemy
     {
         private Transform Target;
         [SerializeField] private float _speed = 1.0f;
-        private static readonly int PlayerOutOfRange = Animator.StringToHash("playerOutOfRange");
 
         public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
         {
@@ -32,6 +31,7 @@ namespace VRProject.Enemy
             }
             else if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
+                _animator.SetBool("playerOutOfRange", false);
                 fsm.StateCanExit();
             }
         }

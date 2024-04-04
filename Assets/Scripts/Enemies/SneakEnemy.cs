@@ -50,13 +50,14 @@ namespace VRProject.Enemy
             // Add states
             _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(false, this));
             _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform));
-            _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack));
-            _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this));
+            _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack, player.transform));
+            _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this, player.transform));
             //_enemyFsm.SetStartState(SneakEnemyState.Idle);
             
             // Add transitions
             _enemyFsm.AddTriggerTransition(StateEvent.DetectPlayer, new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.FollowPlayer));
             _enemyFsm.AddTriggerTransition(StateEvent.LostPlayer, new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.Idle));
+
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.FollowPlayer, 
                 (transition) => isPlayerInFollowRange 
                                 && Vector3.Distance(player.transform.position, transform.position) > _agent.stoppingDistance));
@@ -72,10 +73,6 @@ namespace VRProject.Enemy
             );
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer, 
                 (transition) => shouldAttack)
-            );
-            //_enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer));
-            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.Idle, 
-                (transition) => Time.time - LastAttackTime >= attackCooldown)
             );
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.RunAway, 
                 (transition) => shouldRunAway)
@@ -99,11 +96,21 @@ namespace VRProject.Enemy
             runAwayPlayerSensor.OnPlayerEnter += RunAwayPlayerSensor_OnPlayerEnter;
             runAwayPlayerSensor.OnPlayerExit += RunAwayPlayerSensor_OnPlayerExit;
             flashlightPlayerSensor.OnFlashLightEvent += FlashlightPlayerSensor_FlashLightEvent;
+            flashlightPlayerSensor.OnEnemySpottedEvent += FlashlightPlayerSensor_OnEnemySpottedEvent;
         }
 
-        private void FlashlightPlayerSensor_FlashLightEvent(bool ison)
+        private void FlashlightPlayerSensor_OnEnemySpottedEvent(bool isSpotted)
         {
-            throw new System.NotImplementedException();
+            if (!shouldRunAway)
+            {
+                shouldRunAway = isSpotted;
+                shouldAttack = false;
+            }
+        }
+
+        private void FlashlightPlayerSensor_FlashLightEvent(bool isOn)
+        {
+            shouldAttack = !isOn;
         }
 
         private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)

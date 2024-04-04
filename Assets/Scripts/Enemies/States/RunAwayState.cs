@@ -5,7 +5,7 @@ namespace VRProject.Enemy
     public class RunAwayState : SneakEnemyStateBase
     {
         private Transform Target;
-        public RunAwayState(bool needsExitTime, SneakEnemy sneakEnemy) : base(needsExitTime, sneakEnemy)
+        public RunAwayState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
         {
             this.Target = Target;
         }
@@ -15,18 +15,22 @@ namespace VRProject.Enemy
             base.OnEnter();
             _agent.enabled = true;
             _agent.isStopped = false;
-            _animator.Play("Stand Up");
+            _animator.SetBool("EnemyDetected", true);
         }
 
         public override void OnLogic()
         {
             base.OnLogic();
-            // Run away from player using the target (player) position
-            // In progress
-            _agent.SetDestination(Target.position);
-            
+            if (!_requestedExit)
+            {
+                Vector3 runTo = _agent.transform.position + ((_agent.transform.position - Target.position) * 5);
+                float distance = Vector3.Distance(_agent.transform.position, Target.position);
+                _agent.SetDestination(runTo);
+            }
+
             if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
+                _animator.SetBool("EnemyDetected", false);
                 fsm.StateCanExit();
             }
         }
