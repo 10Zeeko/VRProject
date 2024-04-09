@@ -4,13 +4,21 @@ namespace VRProject.Enemy
 {
     public class FollowPlayerState : SneakEnemyStateBase
     {
-        private Transform Target;
+        private Transform _target;
+        private Player _player;
         [SerializeField] private float _speed = 1.0f;
+        [SerializeField]
+        [Range(-1, 1)]
+        public float MovementPredictionThreshold = 0;
+        [SerializeField]
+        [Range(0.25f, 2f)]
+        public float MovementPredictionTime = 1f;
 
-        public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform Target) : base(needsExitTime, sneakEnemy)
+        public FollowPlayerState(bool needsExitTime, SneakEnemy sneakEnemy, Transform target, Player player) : base(needsExitTime, sneakEnemy)
         {
-            this.Target = Target;
+            this._target = target;
             _agent.speed = _speed;
+            _player = player;
         }
 
         public override void OnEnter()
@@ -25,9 +33,24 @@ namespace VRProject.Enemy
             base.OnLogic();
             if (!_requestedExit)
             {
-                // you can add a more complex movement prediction algorithm like what 
-                // we did in AI Series 44: https://youtu.be/1Jkg8cKLsC0
-                _agent.SetDestination(Target.position);
+                float timeToPlayer = Vector3.Distance(_target.transform.position, _agent.transform.position) / _agent.speed;
+                if (timeToPlayer > MovementPredictionTime)
+                {
+                    timeToPlayer = MovementPredictionTime;
+                }
+                
+                Vector3 targetPosition = _target.transform.position + _player.AverageVelocity * timeToPlayer;
+                Vector3 directionToTarget = (targetPosition - _agent.transform.position).normalized;
+                Vector3 directionToPlayer = (_target.transform.position - _agent.transform.position).normalized;
+
+                float dot = Vector3.Dot(directionToPlayer, directionToTarget);
+
+                if (dot < MovementPredictionThreshold)
+                {
+                    targetPosition = _target.transform.position;
+                }
+
+                _agent.SetDestination(targetPosition);
             }
             else if (_agent.remainingDistance <= _agent.stoppingDistance)
             {

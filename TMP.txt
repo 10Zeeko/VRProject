@@ -1,0 +1,1 @@
+Fix state machine, it's doing a loop with runaway, attack and follow
