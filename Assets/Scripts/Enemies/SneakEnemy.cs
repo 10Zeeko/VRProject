@@ -98,39 +98,46 @@ namespace VRProject.Enemy
             flashlightPlayerSensor.OnFlashLightEvent += FlashlightPlayerSensor_FlashLightEvent;
             flashlightPlayerSensor.OnEnemySpottedEvent += FlashlightPlayerSensor_OnEnemySpottedEvent;
         }
-
         private void FlashlightPlayerSensor_OnEnemySpottedEvent(bool isSpotted)
         {
-            if (!shouldRunAway)
-            {
-                shouldRunAway = isSpotted;
-                shouldAttack = false;
-            }
+            shouldRunAway = isSpotted;
+            shouldAttack = !isSpotted;
         }
-
         private void FlashlightPlayerSensor_FlashLightEvent(bool isOn)
         {
             shouldAttack = !isOn;
+            if (!isOn) shouldRunAway = false;
         }
-
         private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)
-        {
-            _enemyFsm.Trigger(StateEvent.LostPlayer);
-            isPlayerInFollowRange = true;
-        }
-
-        private void FollowPlayerSensor_OnPlayerEnter(Transform obj)
         {
             _enemyFsm.Trigger(StateEvent.LostPlayer);
             isPlayerInFollowRange = false;
         }
-
-        private void RangeAttackPlayerSensor_OnPlayerExit(Vector3 obj) => isPlayerInAttackRange = false;
-
-        private void RangeAttackPlayerSensor_OnPlayerEnter(Transform obj) => isPlayerInAttackRange = true;
-        private void RunAwayPlayerSensor_OnPlayerEnter(Transform obj) => isPlayerInRunAwayRange = true;
-        private void RunAwayPlayerSensor_OnPlayerExit(Vector3 obj) => isPlayerInRunAwayRange = false;
-
+        private void FollowPlayerSensor_OnPlayerEnter(Transform obj)
+        {
+            _enemyFsm.Trigger(StateEvent.DetectPlayer);
+            isPlayerInFollowRange = true;
+        }
+        private void RangeAttackPlayerSensor_OnPlayerExit(Vector3 obj)
+        {
+            isPlayerInAttackRange = false;
+            shouldAttack = false;
+        }
+        private void RangeAttackPlayerSensor_OnPlayerEnter(Transform obj)
+        {
+            isPlayerInAttackRange = true;
+            shouldAttack = true;
+        }
+        private void RunAwayPlayerSensor_OnPlayerEnter(Transform obj)
+        {
+            isPlayerInRunAwayRange = true;
+            _animator.SetBool("flashlightOff", false);
+        }
+        private void RunAwayPlayerSensor_OnPlayerExit(Vector3 obj)
+        {
+            isPlayerInRunAwayRange = false;
+            shouldRunAway = false;
+        }
         private void OnAttack(State<SneakEnemyState, StateEvent> state)
         {
             if (Time.time - LastAttackTime >= attackCooldown)
