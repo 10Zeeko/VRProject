@@ -27,6 +27,7 @@ namespace VRProject.Enemy
             base.OnEnter();
             _agent.enabled = true;
             _agent.isStopped = false;
+            _shouldAttack = false;
         }
         
         public override void OnLogic()

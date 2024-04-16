@@ -111,12 +111,12 @@ namespace VRProject.Enemy
         private void FollowPlayerSensor_OnPlayerExit(Vector3 lastKnownPosition)
         {
             _enemyFsm.Trigger(StateEvent.LostPlayer);
-            isPlayerInFollowRange = false;
+            isPlayerInFollowRange = true;
         }
         private void FollowPlayerSensor_OnPlayerEnter(Transform obj)
         {
             _enemyFsm.Trigger(StateEvent.DetectPlayer);
-            isPlayerInFollowRange = true;
+            isPlayerInFollowRange = false;
         }
         private void RangeAttackPlayerSensor_OnPlayerExit(Vector3 obj)
         {
@@ -137,6 +137,8 @@ namespace VRProject.Enemy
         {
             isPlayerInRunAwayRange = false;
             shouldRunAway = false;
+            _animator.SetBool("EnemyDetected", false);
+            _animator.SetTrigger("hidded");
         }
         private void OnAttack(State<SneakEnemyState, StateEvent> state)
         {

@@ -30,7 +30,6 @@ namespace VRProject.Enemy
 
             if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
-                _animator.SetBool("EnemyDetected", false);
                 fsm.StateCanExit();
             }
         }
