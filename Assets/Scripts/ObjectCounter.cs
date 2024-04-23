@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class ObjectCounter : MonoBehaviour
@@ -12,16 +8,27 @@ public class ObjectCounter : MonoBehaviour
     private int totalMoney = 0;
     [SerializeField]
     private float mechanicalBeltSpeed = 1.0f;
+    
+    [Header("Sensors")]
+    [SerializeField] private ObjectSensor objectSensor;
+    
+    void Start()
+    {
+        objectSensor.OnObjectEnter += Pick;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Collided with: " + other.name);
         if (other.CompareTag("PickeableObject"))
         {
-            Debug.Log("Picked up: " + other.name);
+            SellableObjects instance = other.GetComponent<SellableObjects>();
+            if (instance)
+            {
+                instance.bShouldMove = true;
+            }
         }
     }
-
     public void Pick(GameObject obj)
     {
         totalMoney += obj.GetComponent<SellableObjects>().sellValue;
