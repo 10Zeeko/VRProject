@@ -9,6 +9,9 @@ public class ObjectCounter : MonoBehaviour
     [SerializeField]
     private float mechanicalBeltSpeed = 1.0f;
     
+    [SerializeField]
+    private ObjectSpawner objectSpawner;
+    
     [Header("Sensors")]
     [SerializeField] private ObjectSensor objectSensor;
     
@@ -34,5 +37,6 @@ public class ObjectCounter : MonoBehaviour
         totalMoney += obj.GetComponent<SellableObjects>().sellValue;
         Destroy(obj);
         pickedObjects += 1;
+        objectSpawner.SpawnObject();
     }
 }

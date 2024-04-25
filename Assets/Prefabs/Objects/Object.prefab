@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 7019358783183039571}
   - component: {fileID: 3387843977502127992}
   - component: {fileID: 6222732397207663515}
+  - component: {fileID: 6422672952779036237}
   m_Layer: 0
   m_Name: Object
   m_TagString: PickeableObject
@@ -623,6 +624,21 @@ MonoBehaviour:
   StopSelecting:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6422672952779036237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4582180289484492219}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec8a998dfef00249a3cb066f3c2874b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sellValue: 0
+  bShouldMove: 0
+  speed: 1
 --- !u!1 &4589490249556004326
 GameObject:
   m_ObjectHideFlags: 0
