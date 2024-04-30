@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 using UnityEngine.XR;
 using VRProject.Enemy;
 using Random = UnityEngine.Random;
@@ -14,10 +15,14 @@ public class FlashLight : MonoBehaviour
     [SerializeField]
     private int battery = 100;
     private int _maxBattery = 100;
+    private int _recharge = 3;
     private bool _isOn = false;
     [SerializeField]
     private Light light;
-    private float _batteryDrainTimer = 0f; // Add a timer for battery drain
+    private float _batteryDrainTimer = 0f;
+    
+    [SerializeField]
+    private Slider batterySlider;
     
     [SerializeField]
     private LightDetection lightDetection; 
@@ -66,7 +71,11 @@ public class FlashLight : MonoBehaviour
         {
             if (Vector3.Distance(_lastHandPosition, currentHandPosition) > shakeThreshold)
             {
-                battery = Mathf.Min(_maxBattery, battery + 1);
+                battery += _recharge;
+                if (battery > _maxBattery)
+                {
+                    battery = _maxBattery;
+                }
             }
             _lastHandPosition = currentHandPosition;
         }
@@ -78,13 +87,13 @@ public class FlashLight : MonoBehaviour
             {
                 battery--;
                 _batteryDrainTimer = 0f;
+                UpdateSlider(battery);
+                if(battery <= 0 || (battery < 20 && Random.value < 0.075f))
+                {
+                    TurnOff();
+                }
             }
             light.intensity = (float)battery / _maxBattery;
-
-            if(battery <= 0 || (battery < 20 && Random.value < 0.01f))
-            {
-                TurnOff();
-            }
 
             if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
             {
@@ -122,5 +131,10 @@ public class FlashLight : MonoBehaviour
 
         position = Vector3.zero;
         return false;
+    }
+
+    void UpdateSlider(float aBattery)
+    {
+        batterySlider.value = aBattery / _maxBattery;
     }
 }

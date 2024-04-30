@@ -101,7 +101,7 @@ namespace VRProject.Enemy
         private void FlashlightPlayerSensor_OnEnemySpottedEvent(bool isSpotted)
         {
             shouldRunAway = isSpotted;
-            shouldAttack = !isSpotted;
+            shouldAttack = false;
         }
         private void FlashlightPlayerSensor_FlashLightEvent(bool isOn)
         {
