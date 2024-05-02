@@ -47,7 +47,7 @@ namespace VRProject.Enemy
             _animator = GetComponent<Animator>();
             _enemyFsm = new ();
             
-            // Add states
+            // Base states
             _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(false, this));
             _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform, player.GetComponent<Player>()));
             _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack, player.transform));
@@ -74,15 +74,21 @@ namespace VRProject.Enemy
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.AttackPlayer, 
                 (transition) => shouldAttack)
             );
+            
+            // Run away transitions
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.AttackPlayer, SneakEnemyState.RunAway, 
                 (transition) => shouldRunAway)
             );
-            
-            // Run away transitions
-            //_enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.RunAway));
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.FollowPlayer, SneakEnemyState.RunAway, 
+                (transition) => shouldRunAway)
+            );
+            _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.Idle, SneakEnemyState.RunAway, 
+                (transition) => shouldRunAway)
+            );
             _enemyFsm.AddTransition(new Transition<SneakEnemyState>(SneakEnemyState.RunAway, SneakEnemyState.Idle, 
                 (transition) => !isPlayerInRunAwayRange)
             );
+            
             
             _enemyFsm.Init();
         }

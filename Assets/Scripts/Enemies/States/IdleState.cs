@@ -13,5 +13,10 @@ namespace VRProject.Enemy
             _agent.isStopped = true;
             _animator.SetBool("playerOutOfRange", false);
         }
+
+        public override void OnLogic()
+        {
+            _agent.SetDestination(_agent.transform.position);
+        }
     }
 }

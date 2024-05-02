@@ -20,6 +20,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8896051167825165466, guid: 0956c1e6e6be64440a31a21de2db014e,
         type: 3}
+    - target: {fileID: 2139728663423753201, guid: a25dcfb7c6dff8648955a70ce7c97129,
+        type: 3}
+      propertyPath: m_Mass
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 4582180289484492219, guid: a25dcfb7c6dff8648955a70ce7c97129,
         type: 3}
       propertyPath: m_Name
@@ -40,6 +45,11 @@ PrefabInstance:
     - target: {fileID: 7049507870416950579, guid: a25dcfb7c6dff8648955a70ce7c97129,
         type: 3}
       propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7560112620271653659, guid: a25dcfb7c6dff8648955a70ce7c97129,
+        type: 3}
+      propertyPath: showAdvancedSettings
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8413125721152895850, guid: a25dcfb7c6dff8648955a70ce7c97129,

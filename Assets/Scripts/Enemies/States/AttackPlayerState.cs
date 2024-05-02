@@ -35,11 +35,13 @@ namespace VRProject.Enemy
             base.OnLogic();
             if (!_requestedExit && _shouldAttack)
             {
+                _animator.SetBool("flashlightOff", true);
                 _agent.SetDestination(Target.position);
             }
             else if (_agent.remainingDistance <= _agent.stoppingDistance)
             {
                 _animator.SetBool("flashlightOff", false);
+                _shouldAttack = false;
                 fsm.StateCanExit();
             }
 
@@ -50,7 +52,6 @@ namespace VRProject.Enemy
                 if (!_shouldAttack)
                 {
                     _shouldAttack = UnityEngine.Random.value > 0.95f;
-                    _animator.SetBool("flashlightOff", true);
                 }
             }
         }
