@@ -379,7 +379,7 @@ GameObject:
   - component: {fileID: 1687518442}
   - component: {fileID: 1687518441}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: NavMeshSurface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
