@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class ObjectCounter : MonoBehaviour
@@ -14,6 +15,8 @@ public class ObjectCounter : MonoBehaviour
     
     [Header("Sensors")]
     [SerializeField] private ObjectSensor objectSensor;
+
+    [SerializeField] private TextMeshProUGUI moneyQuantityText;
     
     void Start()
     {
@@ -35,6 +38,7 @@ public class ObjectCounter : MonoBehaviour
     public void Pick(GameObject obj)
     {
         totalMoney += obj.GetComponent<SellableObjects>().sellValue;
+        moneyQuantityText.text = totalMoney.ToString();
         Destroy(obj);
         pickedObjects += 1;
         objectSpawner.SpawnObject();
