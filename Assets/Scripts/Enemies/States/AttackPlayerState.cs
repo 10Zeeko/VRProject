@@ -7,7 +7,7 @@ namespace VRProject.Enemy
     public class AttackPlayerState : SneakEnemyStateBase
     {
         private Transform Target;
-        [SerializeField] private float _speed = 1.0f;
+        [SerializeField] private float _speed = 2.0f;
         [SerializeField] private bool _shouldAttack = false;
         private float _attackCheckTimer = 0.0f;
 

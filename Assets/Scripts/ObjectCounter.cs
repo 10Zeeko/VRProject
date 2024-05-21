@@ -17,6 +17,7 @@ public class ObjectCounter : MonoBehaviour
     [SerializeField] private ObjectSensor objectSensor;
 
     [SerializeField] private TextMeshProUGUI moneyQuantityText;
+    [SerializeField] private FlashLight flashLight;
     
     void Start()
     {
@@ -37,6 +38,7 @@ public class ObjectCounter : MonoBehaviour
     }
     public void Pick(GameObject obj)
     {
+        flashLight.FullCharge();
         totalMoney += obj.GetComponent<SellableObjects>().sellValue;
         moneyQuantityText.text = totalMoney.ToString();
         Destroy(obj);

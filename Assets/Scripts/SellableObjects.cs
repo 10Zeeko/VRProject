@@ -20,7 +20,7 @@ public class SellableObjects : MonoBehaviour
     {
         if (bShouldMove)
         {
-            transform.Translate(0, 0, Time.deltaTime * -speed, Space.World);
+            transform.Translate(Time.deltaTime * -speed, 0, 0, Space.World);
         }
     }
 }

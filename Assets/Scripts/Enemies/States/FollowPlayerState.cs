@@ -6,7 +6,7 @@ namespace VRProject.Enemy
     {
         private Transform _target;
         private Player _player;
-        [SerializeField] private float _speed = 1.0f;
+        [SerializeField] private float _speed = 2.0f;
         [SerializeField]
         [Range(-1, 1)]
         public float MovementPredictionThreshold = 0;

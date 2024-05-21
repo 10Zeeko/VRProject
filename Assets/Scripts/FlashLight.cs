@@ -13,9 +13,9 @@ public class FlashLight : MonoBehaviour
     [SerializeField]
     private float shakeThreshold = 0.04f;
     [SerializeField]
-    private int battery = 100;
-    private int _maxBattery = 100;
-    private int _recharge = 3;
+    private int battery = 160;
+    private int _maxBattery = 160;
+    private int _recharge = 4;
     private bool _isOn = false;
     [SerializeField]
     private Light light;
@@ -33,12 +33,16 @@ public class FlashLight : MonoBehaviour
     public delegate void EnemySpottedEvent(bool isSpotted);
     public event FlashLightEvent OnFlashLightEvent;
     public event EnemySpottedEvent OnEnemySpottedEvent;
-
+    
+    [SerializeField]
+    private float rechargeDelay = 5.0f;
+    private float lastRechargeTime = 0.0f;
+    
     private void Start()
     {
         TurnOn();
     }
-
+    
     public void TurnOff()
     {
         if(_isOn)
@@ -48,7 +52,7 @@ public class FlashLight : MonoBehaviour
             light.enabled = false;
         }
     }
-
+    
     public void TurnOn()
     {
         if(!_isOn)
@@ -63,23 +67,25 @@ public class FlashLight : MonoBehaviour
     {
         return battery;
     }
-
+    
     void Update()
     {
         Vector3 currentHandPosition;
         if (TryGetHandPosition(handNode, out currentHandPosition))
         {
-            if (Vector3.Distance(_lastHandPosition, currentHandPosition) > shakeThreshold)
+            if (Vector3.Distance(_lastHandPosition, currentHandPosition) > shakeThreshold && Time.time - lastRechargeTime >= rechargeDelay)
             {
                 battery += _recharge;
                 if (battery > _maxBattery)
                 {
                     battery = _maxBattery;
                 }
+                lastRechargeTime = Time.time;
+                UpdateSlider(battery);
             }
             _lastHandPosition = currentHandPosition;
         }
-
+    
         if(_isOn)
         {
             _batteryDrainTimer += Time.deltaTime;
@@ -93,8 +99,8 @@ public class FlashLight : MonoBehaviour
                     TurnOff();
                 }
             }
-            light.intensity = (float)battery / _maxBattery;
-
+            light.intensity = ((float)battery / _maxBattery) * 2.0f;
+    
             if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
             {
                 OnEnemySpottedEvent?.Invoke(true);
@@ -112,12 +118,12 @@ public class FlashLight : MonoBehaviour
             }
         }
     }
-
+    
     bool TryGetHandPosition(XRNode node, out Vector3 position)
     {
         List<XRNodeState> nodeStates = new List<XRNodeState>();
         InputTracking.GetNodeStates(nodeStates);
-
+    
         foreach (XRNodeState nodeState in nodeStates)
         {
             if (nodeState.nodeType == node)
@@ -128,13 +134,19 @@ public class FlashLight : MonoBehaviour
                 }
             }
         }
-
+    
         position = Vector3.zero;
         return false;
     }
-
+    
     void UpdateSlider(float aBattery)
     {
         batterySlider.value = aBattery / _maxBattery;
+    }
+    
+    public void FullCharge()
+    {
+        battery = _maxBattery;
+        UpdateSlider(battery);
     }
 }
