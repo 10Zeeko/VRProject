@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 460028258073578671, guid: dcd2f53559104b44187d822dabee96de,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2161273364057517202, guid: dcd2f53559104b44187d822dabee96de,
         type: 3}
       propertyPath: m_Materials.Array.size
@@ -22,7 +27,7 @@ PrefabInstance:
     - target: {fileID: 2613391876564392677, guid: dcd2f53559104b44187d822dabee96de,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 1
+      value: Cup Variant 1
       objectReference: {fileID: 0}
     - target: {fileID: 6139707841680563975, guid: dcd2f53559104b44187d822dabee96de,
         type: 3}
@@ -34,6 +39,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003710066148715572, guid: dcd2f53559104b44187d822dabee96de,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003710066148715572, guid: dcd2f53559104b44187d822dabee96de,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00862
+      objectReference: {fileID: 0}
+    - target: {fileID: 8003710066148715572, guid: dcd2f53559104b44187d822dabee96de,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8003710066148715572, guid: dcd2f53559104b44187d822dabee96de,
         type: 3}

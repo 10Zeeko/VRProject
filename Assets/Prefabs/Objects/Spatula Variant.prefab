@@ -11,7 +11,12 @@ PrefabInstance:
     - target: {fileID: 76208668324961921, guid: f5c75c2c163345f41a8b702dc70960bb,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 1
+      value: Spatula Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2533349774565673163, guid: f5c75c2c163345f41a8b702dc70960bb,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4086031351360973046, guid: f5c75c2c163345f41a8b702dc70960bb,
         type: 3}
@@ -29,6 +34,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357311683999082576, guid: f5c75c2c163345f41a8b702dc70960bb,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357311683999082576, guid: f5c75c2c163345f41a8b702dc70960bb,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00862
+      objectReference: {fileID: 0}
+    - target: {fileID: 5357311683999082576, guid: f5c75c2c163345f41a8b702dc70960bb,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5357311683999082576, guid: f5c75c2c163345f41a8b702dc70960bb,
         type: 3}

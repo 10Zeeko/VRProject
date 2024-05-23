@@ -11,12 +11,32 @@ PrefabInstance:
     - target: {fileID: 994256616944685081, guid: c453b45d87d983b4d9aad6c25a859382,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 2
+      value: Cup Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 3452770473636316755, guid: c453b45d87d983b4d9aad6c25a859382,
+        type: 3}
+      propertyPath: m_Mass
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5087395045566441160, guid: c453b45d87d983b4d9aad6c25a859382,
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087395045566441160, guid: c453b45d87d983b4d9aad6c25a859382,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087395045566441160, guid: c453b45d87d983b4d9aad6c25a859382,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00862
+      objectReference: {fileID: 0}
+    - target: {fileID: 5087395045566441160, guid: c453b45d87d983b4d9aad6c25a859382,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5087395045566441160, guid: c453b45d87d983b4d9aad6c25a859382,
         type: 3}

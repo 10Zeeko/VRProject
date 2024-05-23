@@ -536,8 +536,8 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4778442871429290210, guid: 3f0257943a7b547438c682669377b802, type: 3}
-  - {fileID: 6247469095586266888, guid: 3f0257943a7b547438c682669377b802, type: 3}
+  - {fileID: 2100000, guid: 3016b741fca2ce040be00897c4f2fb5b, type: 2}
+  - {fileID: 2100000, guid: d0e396a5b708c0c4385819ee7a6b5622, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -712,7 +712,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 18
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6684600281246401
 MonoBehaviour:
@@ -904,7 +904,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 24
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5108557417048931957
 MonoBehaviour:

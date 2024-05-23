@@ -23,7 +23,7 @@ PrefabInstance:
     - target: {fileID: 2669561512113413717, guid: a4b0935c19e155d48860052c31e48766,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 5
+      value: Pan Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6087756040179080119, guid: a4b0935c19e155d48860052c31e48766,
         type: 3}
@@ -35,6 +35,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951793418350569604, guid: a4b0935c19e155d48860052c31e48766,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951793418350569604, guid: a4b0935c19e155d48860052c31e48766,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.00862
+      objectReference: {fileID: 0}
+    - target: {fileID: 7951793418350569604, guid: a4b0935c19e155d48860052c31e48766,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7951793418350569604, guid: a4b0935c19e155d48860052c31e48766,
         type: 3}

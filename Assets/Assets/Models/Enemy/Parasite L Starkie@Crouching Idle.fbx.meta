@@ -3,7 +3,37 @@ guid: 3f0257943a7b547438c682669377b802
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: parasitezombie_Material
+    second: {fileID: 2100000, guid: 3016b741fca2ce040be00897c4f2fb5b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: parasitezombie_Material1
+    second: {fileID: 2100000, guid: d0e396a5b708c0c4385819ee7a6b5622, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: parasiteZombie_body_diffuse
+    second: {fileID: 2800000, guid: 5f9f3b6208ae9e54cb2e2d15cfadd4d5, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: parasiteZombie_diffuse
+    second: {fileID: 2800000, guid: 886e1aac3a96fab46bd17ee16c436a2b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: parasiteZombie_normal
+    second: {fileID: 2800000, guid: edffdcdd18b946844a32170b40d2437c, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: parasiteZombie_specular
+    second: {fileID: 2800000, guid: efc2d96dff9837a4e9b5632506c1bc56, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

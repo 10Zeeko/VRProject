@@ -6,7 +6,7 @@ public class ObjectCounter : MonoBehaviour
     [SerializeField]
     private int pickedObjects = 0;
     [SerializeField]
-    private int totalMoney = 0;
+    public int totalMoney = 0;
     [SerializeField]
     private float mechanicalBeltSpeed = 1.0f;
     

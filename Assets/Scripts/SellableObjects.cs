@@ -13,7 +13,7 @@ public class SellableObjects : MonoBehaviour
     private float speed = 2.0f;
     void Start()
     {
-        sellValue = Random.Range(1, 100);
+        sellValue = Random.Range(20, 100);
     }
 
     private void FixedUpdate()

@@ -21,6 +21,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1609755090910681963, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609755090910681963, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.51293
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609755090910681963, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609755090910681963, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.601
       objectReference: {fileID: 0}
@@ -78,7 +93,7 @@ PrefabInstance:
     - target: {fileID: 6701565492552510906, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 4
+      value: Fish Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7258253335163165645, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
         type: 3}
@@ -97,6 +112,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: -8896051167825165466, guid: 990e8206425db294f9c123f0ab4447a4,
         type: 3}
+    - target: {fileID: 9162086481949801456, guid: 3fe0ffa814587df4194cdf8d3ed79cc4,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

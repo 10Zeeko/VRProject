@@ -162,7 +162,7 @@ Transform:
   - {fileID: 731877749282675605}
   - {fileID: 4109785302179569582}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198374216727164342
 MonoBehaviour:
@@ -496,8 +496,8 @@ Camera:
   m_GameObject: {fileID: 731877749184501572}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -1236,11 +1236,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handNode: 4
   shakeThreshold: 0.04
-  battery: 25
+  battery: 160
   light: {fileID: 4706524122138486035}
   batterySlider: {fileID: 8076862304176452618}
   lightDetection: {fileID: 598055877843134609}
   sneakEnemy: {fileID: 0}
+  rechargeDelay: 5
 --- !u!114 &598055877843134609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12504,9 +12505,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
         type: 3}
+      propertyPath: maxStepAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
+        type: 3}
       propertyPath: forwardFollow
       value: 
       objectReference: {fileID: 731877749184501573}
+    - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
+        type: 3}
+      propertyPath: maxStepHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8834320319295017360, guid: fdc3ba53f4e81a040b0471bbbafbb10a,
         type: 3}
       propertyPath: trackingContainer

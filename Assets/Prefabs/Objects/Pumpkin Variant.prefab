@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 1613826334916235048, guid: c3d01da977e7c074aa5e58a56147e700,
         type: 3}
       propertyPath: m_Name
-      value: Barrel Variant 6
+      value: Pumpkin Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3449676210675661151, guid: c3d01da977e7c074aa5e58a56147e700,
         type: 3}
@@ -35,6 +35,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715772452009048569, guid: c3d01da977e7c074aa5e58a56147e700,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715772452009048569, guid: c3d01da977e7c074aa5e58a56147e700,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.51293
+      objectReference: {fileID: 0}
+    - target: {fileID: 6715772452009048569, guid: c3d01da977e7c074aa5e58a56147e700,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6715772452009048569, guid: c3d01da977e7c074aa5e58a56147e700,
         type: 3}
