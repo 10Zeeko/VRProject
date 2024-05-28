@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -47,6 +49,14 @@ public class Player : MonoBehaviour
 
             HistoricalVelocities.Enqueue(GetComponent<Rigidbody>().velocity);
             LastPositionTime = Time.time;
+        }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SceneManager.LoadScene("You_lost");
         }
     }
 }

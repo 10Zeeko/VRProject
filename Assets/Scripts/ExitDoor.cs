@@ -24,9 +24,20 @@ public class ExitDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (objectCounter.totalMoney >= moneyNeeded)
+        if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(sceneToLoad);
+            if (moneyNeeded == 0)
+            {
+                if (sceneToLoad == "ExitGame")
+                {
+                    Application.Quit();
+                }
+                SceneManager.LoadScene(sceneToLoad);
+            }
+            if (objectCounter.totalMoney >= moneyNeeded)
+            {
+                SceneManager.LoadScene(sceneToLoad);
+            }
         }
     }
 }

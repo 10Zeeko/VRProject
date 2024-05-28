@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 198374216727164342}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -162,7 +162,7 @@ Transform:
   - {fileID: 731877749282675605}
   - {fileID: 4109785302179569582}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198374216727164342
 MonoBehaviour:
@@ -1236,7 +1236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   handNode: 4
   shakeThreshold: 0.04
-  battery: 160
+  battery: 300
   light: {fileID: 4706524122138486035}
   batterySlider: {fileID: 8076862304176452618}
   lightDetection: {fileID: 598055877843134609}

@@ -13,9 +13,9 @@ public class FlashLight : MonoBehaviour
     [SerializeField]
     private float shakeThreshold = 0.04f;
     [SerializeField]
-    private int battery = 160;
-    private int _maxBattery = 160;
-    private int _recharge = 4;
+    private int battery = 300;
+    private int _maxBattery = 300;
+    private int _recharge = 20;
     private bool _isOn = false;
     [SerializeField]
     private Light light;
@@ -99,11 +99,13 @@ public class FlashLight : MonoBehaviour
                     TurnOff();
                 }
             }
-            light.intensity = ((float)battery / _maxBattery) * 2.0f;
-    
-            if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
+            light.intensity = ((float)battery / _maxBattery) * 14.0f;
+            if (sneakEnemy)
             {
-                OnEnemySpottedEvent?.Invoke(true);
+                if (lightDetection.IsDetectedByLight(sneakEnemy.transform))
+                {
+                    OnEnemySpottedEvent?.Invoke(true);
+                }
             }
         }
         if (Input.GetButtonDown("Fire1"))
