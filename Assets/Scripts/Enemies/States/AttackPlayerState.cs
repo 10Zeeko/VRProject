@@ -10,16 +10,19 @@ namespace VRProject.Enemy
         [SerializeField] private float _speed = 2.0f;
         [SerializeField] private bool _shouldAttack = false;
         private float _attackCheckTimer = 0.0f;
+        private AudioSource _audioSource;
 
         public AttackPlayerState(
             bool needsExitTime,
             SneakEnemy Enemy,
             Action<State<SneakEnemyState, StateEvent>> onEnter,
             Transform Target,
+            AudioSource audioSource,
             float ExitTime = 0.33f) : base(needsExitTime, Enemy, ExitTime, onEnter)
         {
             this.Target = Target;
             _agent.speed = _speed;
+            _audioSource = audioSource;
         }
 
         public override void OnEnter()
@@ -52,6 +55,10 @@ namespace VRProject.Enemy
                 if (!_shouldAttack)
                 {
                     _shouldAttack = UnityEngine.Random.value > 0.95f;
+                    if (_shouldAttack)
+                    {
+                        _audioSource.Play();
+                    }
                 }
             }
         }

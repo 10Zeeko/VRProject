@@ -39,5 +39,6 @@ public class ExitDoor : MonoBehaviour
                 SceneManager.LoadScene(sceneToLoad);
             }
         }
+        Debug.Log($"Total Money: {objectCounter.totalMoney}, Needed Money: {moneyNeeded}");
     }
 }

@@ -33,7 +33,7 @@ Transform:
   - {fileID: 647808505997871887}
   - {fileID: 2200922144501692904}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &3918823721519632595
 MonoBehaviour:
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280086803
-  m_fontColor: {r: 0.07564971, g: 0.9433962, b: 0.11170823, a: 1}
+    rgba: 4294037011
+  m_fontColor: {r: 0.07564971, g: 0.80784315, b: 0.94509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -389,8 +389,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280086803
-  m_fontColor: {r: 0.07564971, g: 0.9433962, b: 0.11170823, a: 1}
+    rgba: 4294037011
+  m_fontColor: {r: 0.07564971, g: 0.80784315, b: 0.94509804, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

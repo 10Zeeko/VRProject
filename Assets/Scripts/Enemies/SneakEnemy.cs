@@ -50,7 +50,7 @@ namespace VRProject.Enemy
             // Base states
             _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(false, this));
             _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform, player.GetComponent<Player>()));
-            _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack, player.transform));
+            _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack, player.transform, GetComponent<AudioSource>()));
             _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this, player.transform));
             //_enemyFsm.SetStartState(SneakEnemyState.Idle);
             
