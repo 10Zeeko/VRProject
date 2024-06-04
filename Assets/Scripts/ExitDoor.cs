@@ -26,15 +26,20 @@ public class ExitDoor : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            if (moneyNeeded == 0)
+            if (moneyNeeded < 1)
             {
                 if (sceneToLoad == "ExitGame")
                 {
-                    Application.Quit();
+                    #if UNITY_STANDALONE
+                        Application.Quit();
+                    #endif
+                    #if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+                    #endif
                 }
                 SceneManager.LoadScene(sceneToLoad);
             }
-            if (objectCounter.totalMoney >= moneyNeeded)
+            else if (objectCounter.totalMoney >= moneyNeeded)
             {
                 SceneManager.LoadScene(sceneToLoad);
             }

@@ -35,6 +35,9 @@ namespace VRProject.Enemy
         [SerializeField]
         private float LastAttackTime;
         
+        [SerializeField]
+        private Vector3[] safeSpots;
+        
         private StateMachine<SneakEnemyState, StateEvent> _enemyFsm;
         [SerializeField]
         public Animator _animator;
@@ -51,7 +54,7 @@ namespace VRProject.Enemy
             _enemyFsm.AddState(SneakEnemyState.Idle, new IdleState(false, this));
             _enemyFsm.AddState(SneakEnemyState.FollowPlayer, new FollowPlayerState(true, this, player.transform, player.GetComponent<Player>()));
             _enemyFsm.AddState(SneakEnemyState.AttackPlayer, new AttackPlayerState(true, this, OnAttack, player.transform, GetComponent<AudioSource>()));
-            _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this, player.transform));
+            _enemyFsm.AddState(SneakEnemyState.RunAway, new RunAwayState(true, this, player.transform, safeSpots));
             //_enemyFsm.SetStartState(SneakEnemyState.Idle);
             
             // Add transitions
